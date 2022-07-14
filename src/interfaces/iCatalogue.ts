@@ -3,7 +3,7 @@
 export interface iCatalogueAttributes {
     id: number;
     description: string;
-    status?: boolean;
+    status?: boolean;   //? means can be NULL
 }
 
 // Va ser utilizada cuando hagamos una peticion a la base de datos o se nos
@@ -12,6 +12,6 @@ export interface iCatalogueInstance {
     id: number;
     description: string;
     status: boolean;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: Date; //This data will be created by default by sequelize
+    updatedAt: Date; //This data will be created by default by sequelize
 }

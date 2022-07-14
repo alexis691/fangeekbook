@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('FilmSongs', {
+    await queryInterface.createTable('FilmSeasons', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,23 +11,23 @@ module.exports = {
       id: {
         type: Sequelize.NUMBER
       },
+      film_id: {
+        type: Sequelize.NUMBER
+      },
       name: {
         type: Sequelize.STRING
       },
-      performer: {
+      description: {
         type: Sequelize.STRING
       },
-      duration: {
-        type: Sequelize.STRING
+      firstEmision: {
+        type: Sequelize.DATE
       },
-      album: {
-        type: Sequelize.STRING
+      lastEmision: {
+        type: Sequelize.DATE
       },
-      video_url: {
+      image: {
         type: Sequelize.STRING
-      },
-      status: {
-        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
@@ -40,6 +40,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('FilmSongs');
+    await queryInterface.dropTable('FilmSeasons');
   }
 };

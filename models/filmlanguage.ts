@@ -1,22 +1,17 @@
 import { Sequelize, Model } from 'sequelize';
 import { iCatalogueAttributes, iCatalogueInstance } from '../src/interfaces/iCatalogue';
-import { iImage } from '../src/interfaces/iImage';
-
-export interface iDistribuitorAttributes extends iCatalogueAttributes, iImage {}
-export interface iDistribuitorInstance extends iCatalogueInstance, iImage {}
 
 module.exports = (sequelize: Sequelize, DataTypes: any) => {
-  class Distribuitor extends Model<iDistribuitorAttributes, iDistribuitorInstance> implements iDistribuitorAttributes {
+  class FilmLanguage extends Model<iCatalogueAttributes, iCatalogueInstance> implements iCatalogueAttributes {
     id!: number;
     description!: string;
-    urlImage!: string;
     status!: boolean;
 
     static associate(models: any) {
-      // define association here
+      FilmLanguage.hasMany(models.Film, {foreignKey: {name: 'original_language', allowNull: false}})
     }
   }
-  Distribuitor.init({
+  FilmLanguage.init({
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -26,11 +21,6 @@ module.exports = (sequelize: Sequelize, DataTypes: any) => {
       type: DataTypes.STRING(45),
       allowNull: false
     },
-    urlImage:{
-      type: DataTypes.STRING(200),
-      allowNull: false,
-      field: 'url_image'
-    },
     status: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
@@ -38,10 +28,10 @@ module.exports = (sequelize: Sequelize, DataTypes: any) => {
     }
   }, {
     sequelize,
-    modelName: 'Distribuitor',
+    modelName: 'FilmLanguage',
     freezeTableName: true,
-    tableName: 'distribuitor',
+    tableName: 'film_language',
     underscored: true
   });
-  return Distribuitor;
+  return FilmLanguage;
 };

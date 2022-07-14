@@ -8,7 +8,7 @@ module.exports = (sequelize: Sequelize, DataTypes: any) => {
     status!: boolean;
     
     static associate(models: any) {
-      // define association here
+      UserType.hasMany(models.User, {foreignKey: {name: 'user_type', allowNull: false}})
     }
   }
   UserType.init({

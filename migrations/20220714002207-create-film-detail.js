@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Languages', {
+    await queryInterface.createTable('FilmDetails', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,11 +11,17 @@ module.exports = {
       id: {
         type: Sequelize.NUMBER
       },
-      description: {
-        type: Sequelize.STRING
+      film_id: {
+        type: Sequelize.NUMBER
       },
-      status: {
-        type: Sequelize.BOOLEAN
+      totalSeasons: {
+        type: Sequelize.NUMBER
+      },
+      totalEpisodes: {
+        type: Sequelize.NUMBER
+      },
+      endDate: {
+        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,
@@ -28,6 +34,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Languages');
+    await queryInterface.dropTable('FilmDetails');
   }
 };

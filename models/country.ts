@@ -8,7 +8,8 @@ module.exports = (sequelize: Sequelize, DataTypes: any) => {
     status!: boolean;
 
     static associate(models: any) {
-      // define association here
+      Country.hasMany(models.Film, {foreignKey: {name: 'recording_country', allowNull: false}})
+      Country.hasMany(models.Celebrity, {foreignKey: {name: 'birth_country', allowNull: false}})
     }
   }
   Country.init({
@@ -24,7 +25,7 @@ module.exports = (sequelize: Sequelize, DataTypes: any) => {
     status: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: false
+      defaultValue: true
     }
   }, {
     sequelize,
